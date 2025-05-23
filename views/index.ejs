@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image Uploader</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #121212;
+    color: #e0e0e0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 2rem;
+  }
+
+  .container {
+    background: #1e1e1e;
+    padding: 2rem 3rem;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.2), 0 0 30px rgba(0, 255, 255, 0.1);
+    width: 100%;
+    max-width: 500px;
+    animation: fadeInUp 0.8s ease-out;
+    border: 1px solid #2a2a2a;
+  }
+
+  h2 {
+    color: #00ffff;
+  }
+
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+
+  input[type="file"] {
+    background-color: #222;
+    color: #fff;
+    border: 1px solid #444;
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    width: 100%;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  input[type="file"]:hover {
+    border-color: #00ffff;
+    box-shadow: 0 0 10px #00ffff66;
+  }
+
+  input[type="submit"] {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #444;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background-color: #00ffff;
+    color: #000;
+    font-weight: 600;
+  }
+
+  input[type="submit"]:hover {
+    background-color: #00bfbf;
+    box-shadow: 0 0 10px #00ffff;
+    border-color: #00ffff;
+  }
+  /* Preview image before upload */
+  #preview-image-container {
+    margin-top: 1rem;
+    text-align: center;
+    display: none;
+  }
+
+  #preview-image-container img {
+    max-width: 100%;
+    max-height: 300px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+  }
+
+  #preview-image-container img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(0, 255, 255, 0.5);
+  }
+
+  input[type="submit"] {
+    background-color: #00ffff;
+    color: #000;
+    font-weight: 600;
+  }
+
+  input[type="submit"]:hover {
+    background-color: #00bfbf;
+    box-shadow: 0 0 10px #00ffff;
+  }
+
+  #uploaded-image-container {
+    margin-top: 2rem;
+    text-align: center;
+  }
+
+  #uploaded-image-container h2 {
+    margin-bottom: 1rem;
+    z-index: 1;
+    position: relative;
+    background-color: #1e1e1e;
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgba(0, 255, 255, 0.3);
+  }
+
+  #uploaded-image-container img {
+    max-width: 100%;
+    max-height: 300px;
+    object-fit: contain;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+  }
+
+  #uploaded-image-container img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.6);
+  }
+
+  @keyframes fadeInUp {
+    from {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <form action="/upload" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <input type="file" name="file" id="file-input" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Upload" />
+            </div>
+        </form>
+    </div>
+
+    <div id="uploaded-image-container">
+        <% if(url) { %>
+            <h2>File Uploaded Successfully</h2>
+            <img src="<%= url %>" alt="Uploaded Image" />
+        <% } %>
+    </div>
+
+    <script>
+      const fileInput = document.getElementById('file-input');
+      const previewContainer = document.createElement('div');
+      previewContainer.id = 'preview-image-container';
+      document.querySelector('.container').appendChild(previewContainer);
+
+      fileInput.addEventListener('change', function () {
+        const file = this.files[0];
+        if (file) {
+          const reader = new FileReader();
+          previewContainer.style.display = 'block';
+          reader.onload = function (e) {
+            previewContainer.innerHTML = '<img src="' + e.target.result + '" alt="Preview Image">';
+          };
+          reader.readAsDataURL(file);
+        } else {
+          previewContainer.style.display = 'none';
+          previewContainer.innerHTML = '';
+        }
+      });
+    </script>
+
+</body>
+
+</html>
