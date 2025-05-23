@@ -1,6 +1,6 @@
 # Image Uploader
 
-Live Link:- 
+Live Link:- https://image-uploader-vimt.onrender.com
 
 A simple web application that allows users to upload images, preview them before uploading, and stores the images on Cloudinary. The app uses Node.js, Express, Multer for handling file uploads, Cloudinary for cloud storage, and EJS as the templating engine.
 
