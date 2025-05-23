@@ -40,6 +40,6 @@ https://github.com/yourusername/image-uploader.git
 API_KEY=your_api_key
 API_SECRET=your_api_secret
 
-4.**Start the server:** npm start
+ 4.**Start the server:** npm start
 
-5. **Open your browser and navigate to:**  http://localhost:3000    
+5. **Open your browser and navigate to:**   http://localhost:3000    
