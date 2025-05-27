@@ -26,20 +26,11 @@ A simple web application that allows users to upload images, preview them before
 - **CSS3** — For styling with animations and transitions.
 
 ---
+  
+## Screenshots
 
-## Setup & Installation
+⸻
 
-1. **Clone the repository:**
-https://github.com/yourusername/image-uploader.git
-   cd image-uploader
-2. 	**Install dependencies:**
-    npm install
+## Demo Video
 
-3. **Configure environment variables:**
-    CLOUD_NAME=your_cloud_name
-API_KEY=your_api_key
-API_SECRET=your_api_secret
-
- 4.**Start the server:** npm start
-
-5. **Open your browser and navigate to:**   http://localhost:3000    
+⸻
